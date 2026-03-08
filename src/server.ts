@@ -1,10 +1,7 @@
+import './config/env'; // Valida env vars antes de arrancar
 import app from './app';
-import dotenv from 'dotenv';
+import { env } from './config/env';
 
-dotenv.config();
-
-const PORT = process.env.PORT || 4000;
-
-app.listen(PORT, () => {
-  console.log(`🚀 Server running on http://localhost:${PORT}`);
+app.listen(env.PORT, () => {
+  console.log(`Server running on http://localhost:${env.PORT}`);
 });

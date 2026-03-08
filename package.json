@@ -1,22 +1,31 @@
 {
   "name": "globo-backend",
   "version": "1.0.0",
-  "main": "index.js",
+  "main": "dist/server.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "dev": "nodemon --watch src --ext ts --exec ts-node src/server.ts",
+    "build": "node --max-old-space-size=4096 ./node_modules/typescript/bin/tsc",
+    "start": "node dist/server.js",
+    "db:generate": "prisma generate",
+    "db:migrate": "prisma migrate dev",
+    "db:migrate:prod": "prisma migrate deploy",
+    "db:studio": "prisma studio"
   },
   "keywords": [],
-  "author": "",
+  "author": "Globo eSIM",
   "license": "ISC",
-  "description": "",
+  "description": "Globo eSIM — Backend API",
   "dependencies": {
-    "@prisma/client": "^7.1.0",
+    "@prisma/client": "^5.22.0",
     "axios": "^1.13.2",
     "cors": "^2.8.5",
     "dotenv": "^17.2.3",
     "express": "^5.2.1",
+    "express-rate-limit": "^8.2.1",
     "form-data": "^4.0.5",
     "helmet": "^8.1.0",
+    "nodemailer": "^8.0.1",
+    "winston": "^3.19.0",
     "zod": "^4.1.13"
   },
   "devDependencies": {
@@ -24,8 +33,9 @@
     "@types/express": "^5.0.6",
     "@types/form-data": "^2.2.1",
     "@types/node": "^24.10.2",
+    "@types/nodemailer": "^7.0.11",
     "nodemon": "^3.1.11",
-    "prisma": "^7.1.0",
+    "prisma": "^5.22.0",
     "ts-node": "^10.9.2",
     "typescript": "^5.9.3"
   }
